@@ -1,60 +1,67 @@
-# AioCloudStorage
+# Cloud Storage Middleware
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+**Cloud Storage Middleware** is a TypeScript library that provides a unified interface for interacting with different cloud storage providers (AWS S3, Google Cloud Storage, and Azure Blob Storage). This package allows developers to easily perform common file operations—such as uploading, deleting, and listing files—using a consistent API, regardless of the underlying cloud provider.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+## Features
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+- **Unified Interface**: A common interface (`CloudStorageProvider`) for all cloud providers, ensuring consistent usage across different platforms.
+- **Provider-Specific Implementations**: Separate classes for each provider (`AwsMiddleware`, `GcpMiddleware`, `AzureMiddleware`), allowing you to configure and use only the provider you need.
+- **TypeScript Support**: Fully written in TypeScript for type safety and better developer experience.
+- **Modular Design**: Easily extendable to support additional cloud storage providers in the future.
 
-## Finish your CI setup
+## Supported Providers
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/4sVGNstccy)
+- **AWS S3**: Leverage the power of Amazon's Simple Storage Service.
+- **Google Cloud Storage**: Integrate with Google's scalable object storage service.
+- **Azure Blob Storage**: Use Azure's massively scalable object storage for any type of unstructured data.
 
+## Installation
 
-## Run tasks
+To install the package, use npm:
 
-To build the library use:
-
-```sh
-npx nx build
-```
-        
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Versioning and releasing
-
-To version and release the library use
-
-```
-npx nx release
+```shell
+npm install cloud-storage-middleware
 ```
 
-Pass `--dry-run` to see what would happen without actually releasing the library.
+## Usage
+```typescript
+import { AwsMiddleware, GcpMiddleware, AzureMiddleware } from 'cloud-storage-middleware';
 
-[Learn more about Nx release &raquo;](hhttps://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+// Example usage for AWS
+const awsProvider = new AwsMiddleware({ region: 'us-west-2' });
+await awsProvider.upload('my-bucket', 'file.txt', Buffer.from('Hello AWS!'));
+await awsProvider.listFiles('my-bucket');
 
+// Example usage for GCP
+const gcpProvider = new GcpMiddleware({ projectId: 'my-project-id' });
+await gcpProvider.upload('my-bucket', 'file.txt', Buffer.from('Hello GCP!'));
+await gcpProvider.listFiles('my-bucket');
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+// Example usage for Azure
+const azureProvider = new AzureMiddleware('my-azure-connection-string');
+await azureProvider.upload('my-container', 'file.txt', Buffer.from('Hello Azure!'));
+await azureProvider.listFiles('my-container');
+```
 
-## Install Nx Console
+## Contributing
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+We welcome contributions! Please follow these steps to contribute:
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+1. **Fork the repository**: Click the "Fork" button at the top right of this page
+2. **Create a branch:**
+```shell
+   git checkout -b feature/your-feature
+```
+3. **Make your changes:** Implement your feature or fix.
+4. **Commit your changes:**
+```shell
+git commit -am 'Add new feature'
+```
+5. **Push to the branch:**
+```shell
+git push origin feature/your-feature
+```
+6. **Open a pull request:** Go to your fork on GitHub, select the "Pull Request" tab, and click "New Pull Request"
 
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
