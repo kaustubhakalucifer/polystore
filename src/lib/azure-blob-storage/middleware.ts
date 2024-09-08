@@ -19,4 +19,16 @@ export class AzureMiddleware implements CloudStorageProvider {
     const blockBlobClient = containerClient.getBlockBlobClient(blobName);
     await blockBlobClient.upload(body, body.length);
   }
+
+  async listFiles(containerName: string): Promise<string[]> {
+    const containerClient =
+      this.blobServiceClient.getContainerClient(containerName);
+    const iterator = containerClient.listBlobsFlat();
+    const blobs: string[] = [];
+
+    for await (const blob of iterator) {
+      blobs.push(blob.name);
+    }
+    return blobs;
+  }
 }
