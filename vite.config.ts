@@ -4,7 +4,7 @@ import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: './node_modules/.vite/aio-cloud-storage',
+  cacheDir: './node_modules/.vite/polystore',
 
   plugins: [nxViteTsPaths()],
 
@@ -20,7 +20,7 @@ export default defineConfig({
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['default'],
     coverage: {
-      reportsDirectory: './coverage/aio-cloud-storage',
+      reportsDirectory: './coverage/polystore',
       provider: 'v8',
     },
   },

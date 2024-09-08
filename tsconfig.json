@@ -14,7 +14,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@aio-cloud-storage/source": ["src/index.ts"]
+      "@polystore/source": ["src/index.ts"]
     }
   },
   "files": [],

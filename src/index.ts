@@ -1,1 +1,1 @@
-export * from './lib/azure-blob-storage';
+export * from './lib';

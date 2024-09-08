@@ -29,6 +29,7 @@ export class AzureMiddleware implements CloudStorageProvider {
     for await (const blob of iterator) {
       blobs.push(blob.name);
     }
+
     return blobs;
   }
 }

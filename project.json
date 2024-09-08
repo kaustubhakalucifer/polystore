@@ -1,5 +1,5 @@
 {
-  "name": "aio-cloud-storage",
+  "name": "polystore",
   "$schema": "node_modules/nx/schemas/project-schema.json",
   "includedScripts": [],
   "sourceRoot": "src",
@@ -10,7 +10,7 @@
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/aio-cloud-storage",
+        "outputPath": "dist/polystore",
         "main": "./src/index.ts",
         "tsConfig": "./tsconfig.lib.json",
         "assets": ["*.md"]
@@ -23,7 +23,7 @@
       "executor": "@nx/vite:test",
       "outputs": ["{options.reportsDirectory}"],
       "options": {
-        "reportsDirectory": "coverage/aio-cloud-storage"
+        "reportsDirectory": "coverage/polystore"
       }
     }
   }
